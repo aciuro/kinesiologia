@@ -123,6 +123,8 @@ db.exec(`
     nombre      TEXT NOT NULL,
     descripcion TEXT,
     categoria   TEXT,
+    articulacion TEXT,
+    movimiento  TEXT,
     video_url   TEXT,
     imagen_url  TEXT,
     created_at  TEXT DEFAULT (datetime('now','localtime'))
@@ -172,6 +174,15 @@ if (!colsEvol.includes('ejercicios_sesion')) db.exec(`ALTER TABLE evoluciones AD
 
 const colsEj = db.prepare("PRAGMA table_info(ejercicios)").all().map(c => c.name);
 if (!colsEj.includes('imagen_url')) db.exec(`ALTER TABLE ejercicios ADD COLUMN imagen_url TEXT`);
+if (!colsEj.includes('articulacion')) db.exec(`ALTER TABLE ejercicios ADD COLUMN articulacion TEXT`);
+if (!colsEj.includes('movimiento')) db.exec(`ALTER TABLE ejercicios ADD COLUMN movimiento TEXT`);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS configuracion_sistema (
+    clave TEXT PRIMARY KEY,
+    valor TEXT NOT NULL
+  )
+`);
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS rutinas (
@@ -234,7 +245,7 @@ if (!adminExiste) {
 // ── Seed ejercicios ────────────────────────────────────────
 
 {
-  const ins = db.prepare(`INSERT INTO ejercicios (nombre, descripcion, categoria, video_url) VALUES (@nombre, @descripcion, @categoria, @video_url)`);
+  const ins = db.prepare(`INSERT INTO ejercicios (nombre, descripcion, categoria, articulacion, movimiento, video_url) VALUES (@nombre, @descripcion, @categoria, @articulacion, @movimiento, @video_url)`);
   const seedAll = db.transaction((lista) => {
     db.exec(`DELETE FROM ejercicios`);
     for (const e of lista) ins.run(e);
@@ -242,7 +253,7 @@ if (!adminExiste) {
 
   const yt = (q) => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
 
-  seedAll([
+  if (false) seedAll([
     // ══ TOBILLO ═════════════════════════════════════════════
     // Tibial Anterior
     { nombre: 'Dorsiflexión con Banda', categoria: 'Tobillo · Tibial Anterior', descripcion: 'Sentado, banda en el empeine, llevar la punta del pie hacia la rodilla. Volver lento.', video_url: yt('dorsiflexión tobillo banda tibial anterior') },
@@ -390,7 +401,19 @@ if (!adminExiste) {
     { nombre: 'Pronación en Polea', categoria: 'Codo · Pronadores', descripcion: 'Agarre en la polea alta, codo fijo, rotar el antebrazo hacia la pronación.', video_url: yt('pronación antebrazo polea ejercicio técnica') },
     { nombre: 'Lanzamiento con Rotación (Chop) en Polea', categoria: 'Codo · Pronadores', descripcion: 'Movimiento diagonal desde arriba hacia abajo con rotación del antebrazo. Trabaja pronadores funcionalmente.', video_url: yt('chop rotación polea pronadores antebrazo funcional') },
   ]);
-  console.log('✅ Seed de ejercicios actualizado');
+  const premiumExerciseLibrary = require('./premium-exercise-library.json');
+  const premiumLibraryVersion = 'premium-articular-2026-09';
+  const libraryVersion = db.prepare(`SELECT valor FROM configuracion_sistema WHERE clave='biblioteca_ejercicios'`).get()?.valor;
+
+  if (libraryVersion !== premiumLibraryVersion) {
+    db.transaction(() => {
+      db.exec(`DELETE FROM ejercicios`);
+      for (const ejercicio of premiumExerciseLibrary) ins.run(ejercicio);
+      db.prepare(`INSERT OR REPLACE INTO configuracion_sistema (clave, valor) VALUES ('biblioteca_ejercicios', ?)`)
+        .run(premiumLibraryVersion);
+    })();
+    console.log(`✅ Biblioteca premium inicializada: ${premiumExerciseLibrary.length} videos`);
+  }
 }
 
 // ── Usuarios ──────────────────────────────────────────────
@@ -457,10 +480,10 @@ const deleteSesion = db.prepare(`DELETE FROM sesiones WHERE id = ?`);
 
 // ── Ejercicios ────────────────────────────────────────────
 
-const getEjercicios = db.prepare(`SELECT * FROM ejercicios ORDER BY categoria, nombre`);
+const getEjercicios = db.prepare(`SELECT * FROM ejercicios ORDER BY articulacion, movimiento, nombre`);
 const getEjercicio = db.prepare(`SELECT * FROM ejercicios WHERE id = ?`);
-const insertEjercicio = db.prepare(`INSERT INTO ejercicios (nombre, descripcion, categoria, video_url, imagen_url) VALUES (@nombre, @descripcion, @categoria, @video_url, @imagen_url)`);
-const updateEjercicio = db.prepare(`UPDATE ejercicios SET nombre=@nombre, descripcion=@descripcion, categoria=@categoria, video_url=@video_url, imagen_url=@imagen_url WHERE id=@id`);
+const insertEjercicio = db.prepare(`INSERT INTO ejercicios (nombre, descripcion, categoria, articulacion, movimiento, video_url, imagen_url) VALUES (@nombre, @descripcion, @categoria, @articulacion, @movimiento, @video_url, @imagen_url)`);
+const updateEjercicio = db.prepare(`UPDATE ejercicios SET nombre=@nombre, descripcion=@descripcion, categoria=@categoria, articulacion=@articulacion, movimiento=@movimiento, video_url=@video_url, imagen_url=@imagen_url WHERE id=@id`);
 const deleteEjercicio = db.prepare(`DELETE FROM ejercicios WHERE id = ?`);
 
 // ── Motivos de consulta ───────────────────────────────────

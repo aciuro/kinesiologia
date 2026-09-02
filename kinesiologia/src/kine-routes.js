@@ -6,6 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const db = require('./kine-db-unified');
+const { serveExerciseVideo } = require('./bucket-media');
 
 const uploadsDir = path.join(process.env.DATA_DIR || path.join(__dirname, '..'), 'uploads');
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
@@ -19,6 +20,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'kine-ciuro-secret-2024';
 router.use(express.json());
 
 router.get('/health', (req, res) => res.json({ ok: true }));
+router.get('/media/:filename', serveExerciseVideo);
 
 // ── Middleware auth ───────────────────────────────────────
 
@@ -54,6 +56,19 @@ function puedeAccederMotivo(req, motivoId) {
   const motivo = db.getMotivo(motivoId);
   if (!motivo) return false;
   return puedeAccederPaciente(req, motivo.paciente_id);
+}
+
+function normalizarEjercicio(data = {}, existente = {}) {
+  const articulacion = data.articulacion ?? existente.articulacion ?? '';
+  const movimiento = data.movimiento ?? existente.movimiento ?? '';
+  return {
+    ...existente,
+    ...data,
+    articulacion,
+    movimiento,
+    categoria: data.categoria || (articulacion && movimiento ? `${articulacion} · ${movimiento}` : existente.categoria || ''),
+    imagen_url: data.imagen_url ?? existente.imagen_url ?? null,
+  };
 }
 
 // ── Auth ──────────────────────────────────────────────────
@@ -206,12 +221,16 @@ router.get('/ejercicios', auth, (req, res) => {
 });
 
 router.post('/ejercicios', auth, soloAdmin, (req, res) => {
-  try { res.status(201).json(db.insertEjercicio(req.body)); }
+  try { res.status(201).json(db.insertEjercicio(normalizarEjercicio(req.body))); }
   catch (e) { res.status(400).json({ error: e.message }); }
 });
 
 router.put('/ejercicios/:id', auth, soloAdmin, (req, res) => {
-  try { res.json(db.updateEjercicio({ ...req.body, id: req.params.id })); }
+  try {
+    const existente = db.getEjercicio(req.params.id);
+    if (!existente) return res.status(404).json({ error: 'No encontrado' });
+    res.json(db.updateEjercicio({ ...normalizarEjercicio(req.body, existente), id: req.params.id }));
+  }
   catch (e) { res.status(400).json({ error: e.message }); }
 });
 

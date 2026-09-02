@@ -1,19 +1,9 @@
 import { premiumExerciseLibrary } from './premiumExerciseLibrary.js'
-import { exerciseLibrary } from './exerciseLibrary.js'
 
 function norm(t=''){return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
 
-// Mapear imagenes existentes por nombre
-const imageMap = {}
-exerciseLibrary.forEach(group=>{
-  group.items.forEach(it=>{
-    imageMap[norm(it.name)] = it.images
-  })
-})
-
 function enrich(ex){
-  const key = norm(ex.name)
-  let images = ex.images && ex.images.length ? ex.images : imageMap[key]
+  let images = ex.images && ex.images.length ? ex.images : null
 
   if(!images || images.length===0){
     images = ['/exercise-placeholder.svg']

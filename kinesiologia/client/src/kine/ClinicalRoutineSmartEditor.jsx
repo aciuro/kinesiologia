@@ -164,7 +164,10 @@ function resolveExerciseQuery(action = {}) {
     musculo,
     contraccion,
     cadena: cadena === 'cualquiera' ? inferChainFromName(opt.name, opt.tags || []) : cadena,
-    imagen: opt.images?.[0],
+    articulacion: opt.articulacion,
+    movimiento: opt.movimiento,
+    video_url: opt.video_url,
+    video: opt.video_url,
     tags: opt.tags || [],
   }))
 }
