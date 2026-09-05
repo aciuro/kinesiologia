@@ -24,10 +24,10 @@ import './clinical-routine-mobile.css'
 const KINE_EMAIL = 'augustociuro@gmail.com'
 
 const c = {
-  bg: '#F6FBFC', white: '#FFFFFF', sky: '#3FA7B8', skyDark: '#277F92',
-  skyLight: '#E2F5F8', skyXlight: '#F3FBFD', aqua: '#79CDBB', aquaDark: '#4FA898',
-  aquaLight: '#E8F8F4', ink: '#0B2F38', ink2: '#315F68', muted: '#7FA5AE',
-  border: 'rgba(113,167,179,.28)', sidebar: '#EEE4D4',
+  bg: '#EAF1F7', white: '#FFFFFF', sky: '#25B6D6', skyDark: '#0B5876',
+  skyLight: '#DDF3F8', skyXlight: '#F3F8FB', aqua: '#37C4BC', aquaDark: '#137A78',
+  aquaLight: '#DDF7F3', ink: '#102A43', ink2: '#34536C', muted: '#637D91',
+  border: 'rgba(91,128,151,.28)', sidebar: '#102A43',
 }
 
 const NAV_ITEMS = [
@@ -105,8 +105,8 @@ function AdminLayout({ usuario, onLogout }) {
             <BrandLogo size={38} />
           </div>
           <div>
-            <div style={{ fontSize: 15, color: c.ink, letterSpacing: '.02em', fontWeight: 950 }}>Kinesiología Deportiva</div>
-            <div style={{ fontSize: 9, color: c.muted, letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 800 }}>Portal profesional</div>
+            <div style={{ fontSize: 16, color: c.ink, letterSpacing: '.02em', fontWeight: 950 }}>KinePlus</div>
+            <div style={{ fontSize: 10, color: c.muted, letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 800 }}>Panel profesional</div>
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -204,7 +204,7 @@ export default function KineApp() {
         <div style={{ width: 64, height: 64, borderRadius: 20, background: 'rgba(255,255,255,.78)', display: 'grid', placeItems: 'center', boxShadow: '0 18px 42px rgba(13,53,64,.12)' }}>
           <BrandLogo size={58} />
         </div>
-        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 950, color: c.ink }}>Kinesiología Deportiva</div>
+        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 950, color: c.ink }}>KinePlus</div>
       </div>
     )
   }

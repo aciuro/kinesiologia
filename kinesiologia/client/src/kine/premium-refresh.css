@@ -1,19 +1,19 @@
-/* Premium visual refresh para RehabilitaPlus - visible v2 */
+/* Sistema visual KinePlus: contraste alto, lectura cómoda y detalles premium. */
 :root {
-  --rp-bg: #F4FAFB;
-  --rp-bg-2: #EAF6F8;
+  --rp-bg: #EAF1F7;
+  --rp-bg-2: #DCEAF3;
   --rp-surface: rgba(255,255,255,.96);
   --rp-surface-solid: #FFFFFF;
-  --rp-ink: #082B34;
-  --rp-ink-soft: #315F68;
-  --rp-muted: #789FAA;
-  --rp-line: rgba(83, 151, 166, .30);
-  --rp-line-strong: rgba(39, 127, 146, .44);
-  --rp-brand: #2F9FB2;
-  --rp-brand-dark: #176F82;
-  --rp-brand-soft: #DDF4F7;
-  --rp-mint: #72CDB8;
-  --rp-mint-soft: #E5F8F3;
+  --rp-ink: #102A43;
+  --rp-ink-soft: #34536C;
+  --rp-muted: #637D91;
+  --rp-line: rgba(91, 128, 151, .28);
+  --rp-line-strong: rgba(11, 88, 118, .46);
+  --rp-brand: #25B6D6;
+  --rp-brand-dark: #0B5876;
+  --rp-brand-soft: #DDF3F8;
+  --rp-mint: #37C4BC;
+  --rp-mint-soft: #DDF7F3;
   --rp-cream: #EFE3D1;
   --rp-cream-soft: #F8F1E7;
   --rp-card-shadow: 0 22px 58px rgba(13, 53, 64, .10);
@@ -23,29 +23,12 @@
 }
 
 html, body, #root {
-  background: radial-gradient(circle at 50% -12%, rgba(47,159,178,.24), transparent 35%), linear-gradient(135deg, #F4FAFB 0%, #FFFFFF 50%, #EAF6F8 100%) !important;
+  background: radial-gradient(circle at 50% -12%, rgba(37,182,214,.22), transparent 35%), linear-gradient(135deg, #EAF1F7 0%, #F8FBFD 50%, #DCEAF3 100%) !important;
 }
 
 body {
   color: var(--rp-ink) !important;
   letter-spacing: -.01em;
-}
-
-body::after {
-  content: 'Visual refresh v2';
-  position: fixed;
-  right: 14px;
-  bottom: 14px;
-  z-index: 99999;
-  background: linear-gradient(135deg, var(--rp-brand), var(--rp-brand-dark));
-  color: #fff;
-  border-radius: 999px;
-  padding: 7px 11px;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .04em;
-  box-shadow: 0 12px 26px rgba(23,111,130,.25);
-  pointer-events: none;
 }
 
 button, input, textarea, select {
@@ -71,7 +54,7 @@ input:focus, textarea:focus, select:focus {
 ::placeholder { color: #9BB7BE !important; }
 
 .adm-shell {
-  background: radial-gradient(circle at 58% -8%, rgba(47,159,178,.22), transparent 34%), linear-gradient(135deg, #F4FAFB 0%, #FFFFFF 56%, #EAF6F8 100%) !important;
+  background: radial-gradient(circle at 58% -8%, rgba(37,182,214,.22), transparent 34%), linear-gradient(135deg, #EAF1F7 0%, #F8FBFD 56%, #DCEAF3 100%) !important;
 }
 
 .adm-sidebar {
@@ -221,35 +204,8 @@ span[style*="border-radius: 999"] { letter-spacing: .03em; }
   border-radius: 18px !important;
 }
 
-/* Marca AC en portal paciente: aplicada por CSS para no tocar la lógica grande del portal. */
 .pac-shell {
-  background: radial-gradient(circle at 50% -12%, rgba(47,159,178,.24), transparent 35%), linear-gradient(135deg, #F4FAFB 0%, #FFFFFF 50%, #EAF6F8 100%) !important;
-}
-
-.pac-content::before {
-  content: '';
-  display: block;
-  width: min(260px, 76vw);
-  height: 96px;
-  margin: 2px auto 14px;
-  background-image: url('/ac-kinesiologia-full.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  filter: drop-shadow(0 10px 24px rgba(13,53,64,.07));
-}
-
-.pac-content > div:first-child[style*="display: flex"][style*="justify-content: space-between"] {
-  background: rgba(255,255,255,.78) !important;
-  border: 1px solid var(--rp-line) !important;
-  border-radius: 24px !important;
-  padding: 12px !important;
-  box-shadow: var(--rp-card-shadow-sm) !important;
-  margin-bottom: 14px !important;
-}
-
-.pac-content > div:first-child svg:first-child {
-  display: none !important;
+  background: radial-gradient(circle at 50% -14%, rgba(37,182,214,.22), transparent 34%), linear-gradient(135deg, #EAF1F7 0%, #F8FBFD 50%, #DCEAF3 100%) !important;
 }
 
 .pac-content .pp-card,
@@ -315,7 +271,6 @@ section div[style*="width: 66px"][style*="height: 66px"] {
 
 @media (min-width: 768px) {
   .adm-content { padding: 38px 44px 50px !important; }
-  .pac-content::before { width: 300px; height: 108px; margin-top: 0; }
 }
 
 @media (max-width: 767px) {
@@ -323,7 +278,5 @@ section div[style*="width: 66px"][style*="height: 66px"] {
   .adm-content header,
   .kine-page-header { justify-content: center !important; }
   h1 { font-size: 24px !important; }
-  body::after { bottom: 92px; }
   .pac-content { padding-top: 12px !important; }
-  .pac-content::before { height: 84px; margin-bottom: 10px; }
 }

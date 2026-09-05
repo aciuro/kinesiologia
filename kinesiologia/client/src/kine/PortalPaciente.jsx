@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { api } from './api.js'
 
 const c = {
-  bg: '#F0F8FA', white: '#FFFFFF',
-  sky: '#5BB8CC', skyDark: '#3A96AE',
-  skyLight: '#DAEEF5', skyXlight: '#EEF7FA',
-  aqua: '#7EC8B8', aquaDark: '#4FA898', aquaLight: '#D8F0EA',
-  ink: '#0D3540', ink2: '#2A6070', muted: '#7AAAB8',
-  border: '#C0DDE5',
+  bg: '#EAF1F7', white: '#FFFFFF',
+  sky: '#25B6D6', skyDark: '#0B5876',
+  skyLight: '#DDF3F8', skyXlight: '#F3F8FB',
+  aqua: '#37C4BC', aquaDark: '#137A78', aquaLight: '#DDF7F3',
+  ink: '#102A43', ink2: '#34536C', muted: '#637D91',
+  border: '#C7D9E5',
   redBg: '#FEF0EE', redBorder: '#F5A897', redText: '#C0341D', redSub: '#E05A3A',
   yellow: '#FFF8D6', yellowBorder: '#F0DFA0', yellowText: '#7A5C00', yellowDark: '#B8860B',
 }
@@ -28,8 +28,9 @@ const globalStyle = `
   body { font-family: 'DM Sans', sans-serif; background: ${c.bg}; -webkit-font-smoothing: antialiased; }
   textarea, input { outline: none; }
 
-  .pac-shell { min-height: 100vh; background: ${c.bg}; display: flex; flex-direction: column; }
+  .pac-shell { min-height: 100vh; background: ${c.bg}; display: flex; flex-direction: column; color: ${c.ink}; font-size: 16px; line-height: 1.45; }
   .pac-content { flex: 1; padding: 16px 18px 120px; max-width: 480px; margin: 0 auto; width: 100%; }
+  .pac-hero { background: linear-gradient(135deg, #102A43 0%, #0B5876 100%); border-radius: 28px; padding: 18px; margin-bottom: 22px; box-shadow: 0 18px 34px rgba(16,42,67,.20); border: 1px solid rgba(255,255,255,.12); }
 
   .bottom-nav {
     position: fixed; bottom: 12px; left: 12px; right: 12px;
@@ -39,11 +40,11 @@ const globalStyle = `
     z-index: 100; box-shadow: 0 4px 24px rgba(13,53,64,0.08);
   }
   .nav-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; background: none; border: none; cursor: pointer; padding: 4px 2px; }
-  .nav-label { font-size: 9px; font-family: 'DM Sans', sans-serif; white-space: nowrap; }
+  .nav-label { font-size: 11px; font-family: 'DM Sans', sans-serif; white-space: nowrap; font-weight: 700; }
   .nav-dot { width: 4px; height: 4px; border-radius: 50%; background: ${c.skyDark}; margin: 1px auto 0; }
 
-  .pp-card { background: ${c.white}; border-radius: 16px; border: 0.5px solid ${c.border}; padding: 15px; margin-bottom: 14px; }
-  .pp-mini-card { background: ${c.white}; border-radius: 14px; padding: 13px; display: flex; flex-direction: column; gap: 8px; border: 0.5px solid ${c.border}; }
+  .pp-card { background: ${c.white}; border-radius: 18px; border: 1px solid ${c.border}; padding: 17px; margin-bottom: 16px; box-shadow: 0 8px 22px rgba(16,42,67,.06); }
+  .pp-mini-card { background: ${c.white}; border-radius: 16px; padding: 15px; display: flex; flex-direction: column; gap: 8px; border: 1px solid ${c.border}; }
   .pp-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
 
   @media (min-width: 768px) {
@@ -59,9 +60,9 @@ const globalStyle = `
 function LogoSVG() {
   return (
     <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-      <ellipse cx="13" cy="13" rx="7.5" ry="10.5" fill="#5BB8CC" transform="rotate(-20 13 13)"/>
-      <ellipse cx="13" cy="13" rx="5.5" ry="8.5" fill="#7EC8B8" opacity="0.6" transform="rotate(30 13 13)"/>
-      <line x1="13" y1="4" x2="13" y2="22" stroke={c.ink} strokeWidth="1.2" strokeLinecap="round"/>
+      <ellipse cx="13" cy="13" rx="7.5" ry="10.5" fill="#25B6D6" transform="rotate(-20 13 13)"/>
+      <ellipse cx="13" cy="13" rx="5.5" ry="8.5" fill="#37C4BC" opacity="0.78" transform="rotate(30 13 13)"/>
+      <line x1="13" y1="4" x2="13" y2="22" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round"/>
     </svg>
   )
 }
@@ -816,20 +817,24 @@ export default function PortalPaciente({ paciente, usuario, onLogout }) {
 
       <div className="pac-content">
         {/* Topbar */}
-        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:20 }}>
+        <header className="pac-hero">
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:20 }}>
           <div style={{ display:'flex', alignItems:'center', gap:9 }}>
             <LogoSVG />
+            <span style={{ color:'#FFFFFF', fontSize:21, fontWeight:900, letterSpacing:'-.04em' }}>KinePlus</span>
           </div>
-          <button style={{ width:36, height:36, borderRadius:'50%', background:c.white, border:`0.5px solid ${c.border}`, display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer' }}>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2a5 5 0 0 1 5 5v3l1.5 2.5H2.5L4 10V7A5 5 0 0 1 9 2z" stroke={c.skyDark} strokeWidth="1.4" strokeLinecap="round"/><path d="M7 14.5a2 2 0 0 0 4 0" stroke={c.skyDark} strokeWidth="1.4" strokeLinecap="round"/></svg>
+          <button aria-label="Notificaciones" style={{ width:40, height:40, borderRadius:'50%', background:'rgba(255,255,255,.12)', border:'1px solid rgba(255,255,255,.28)', display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer' }}>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2a5 5 0 0 1 5 5v3l1.5 2.5H2.5L4 10V7A5 5 0 0 1 9 2z" stroke="#FFFFFF" strokeWidth="1.4" strokeLinecap="round"/><path d="M7 14.5a2 2 0 0 0 4 0" stroke="#FFFFFF" strokeWidth="1.4" strokeLinecap="round"/></svg>
           </button>
-        </div>
+          </div>
 
-        {/* Greeting */}
-        <div style={{ marginBottom:24 }}>
-          <div style={{ fontSize:10, color:c.muted, letterSpacing:'1.2px', textTransform:'uppercase', marginBottom:3 }}>{formatDateLong()}</div>
-          <div style={{ fontFamily:"'DM Serif Display', serif", fontSize:28, color:c.ink, lineHeight:1.1 }}>Hola, {paciente.nombre}</div>
-        </div>
+          {/* Greeting */}
+          <div>
+            <div style={{ fontSize:12, color:'rgba(255,255,255,.75)', letterSpacing:'1.2px', textTransform:'uppercase', marginBottom:5, fontWeight:700 }}>{formatDateLong()}</div>
+            <div style={{ fontFamily:"'DM Sans', sans-serif", fontWeight:900, fontSize:30, color:'#FFFFFF', lineHeight:1.12 }}>Hola, {paciente.nombre}</div>
+            <div style={{ marginTop:6, color:'rgba(255,255,255,.78)', fontSize:16 }}>Tu recuperación, paso a paso.</div>
+          </div>
+        </header>
 
         {loading ? (
           <div style={{ textAlign:'center', color:c.muted, padding:'3rem', fontFamily:"'DM Sans', sans-serif" }}>Cargando…</div>
