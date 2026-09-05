@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title description">
+  <title id="title">Extensión de cadera con polea</title>
+  <desc id="description">Animación esquemática de cinco segundos: una figura sostiene una polea baja y extiende una pierna hacia atrás desde la cadera.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0A1A29"/>
+      <stop offset="1" stop-color="#12334A"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#52E0D8"/>
+      <stop offset="1" stop-color="#20A7B7"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" rx="28" fill="url(#bg)"/>
+  <path d="M44 297H596" stroke="#31516A" stroke-width="2"/>
+  <path d="M44 299H596" stroke="#17364D" stroke-width="12" opacity=".45"/>
+
+  <!-- Polea baja -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M112 83V286M112 83H182M182 83V286" stroke="#9BB2C3" stroke-width="9"/>
+    <path d="M91 286H203" stroke="#9BB2C3" stroke-width="9"/>
+    <circle cx="135" cy="266" r="17" fill="#0B2638" stroke="#52E0D8" stroke-width="5"/>
+    <circle cx="135" cy="266" r="5" fill="#52E0D8"/>
+    <rect x="145" y="151" width="25" height="82" rx="7" fill="#18384C" stroke="#64869C" stroke-width="3"/>
+    <path d="M152 165H163M152 182H163M152 199H163M152 216H163" stroke="#64869C" stroke-width="2"/>
+  </g>
+
+  <!-- Cable: acompaña el recorrido del tobillo -->
+  <path fill="none" stroke="#52E0D8" stroke-width="3" stroke-dasharray="5 6" filter="url(#glow)">
+    <animate attributeName="d" dur="5s" repeatCount="indefinite"
+      values="M135 266 C205 274 269 294 350 305;M135 266 C215 262 310 276 433 272;M135 266 C215 262 310 276 433 272;M135 266 C205 274 269 294 350 305"
+      keyTimes="0;.38;.56;1" calcMode="spline" keySplines=".38 0 .2 1;.38 0 .2 1;.38 0 .2 1"/>
+  </path>
+
+  <!-- Figura esquemática -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="313" cy="94" r="25" fill="#F0F7FA"/>
+    <path d="M305 121L327 215" stroke="#F0F7FA" stroke-width="18"/>
+    <path d="M310 139L231 166M318 145L231 177" stroke="#F0F7FA" stroke-width="12"/>
+    <circle cx="228" cy="171" r="9" fill="#52E0D8"/>
+    <path d="M313 215L300 305" stroke="#F0F7FA" stroke-width="18"/>
+    <path d="M292 307H322" stroke="#F0F7FA" stroke-width="14"/>
+
+    <!-- Pierna de trabajo: extensión desde la cadera -->
+    <g>
+      <path d="M326 215L350 305" stroke="#52E0D8" stroke-width="18" filter="url(#glow)"/>
+      <path d="M340 305H369" stroke="#52E0D8" stroke-width="14" filter="url(#glow)"/>
+      <rect x="339" y="291" width="21" height="22" rx="6" fill="#17384D" stroke="#83F0E8" stroke-width="3"/>
+      <animateTransform attributeName="transform" type="rotate" dur="5s" repeatCount="indefinite"
+        values="0 326 215;-45 326 215;-45 326 215;0 326 215"
+        keyTimes="0;.38;.56;1" calcMode="spline" keySplines=".38 0 .2 1;.38 0 .2 1;.38 0 .2 1"/>
+    </g>
+    <circle cx="326" cy="215" r="13" fill="#52E0D8" filter="url(#glow)"/>
+  </g>
+
+  <!-- Indicador de recorrido -->
+  <path d="M391 252Q440 230 466 248" fill="none" stroke="#67DAB9" stroke-width="4" stroke-linecap="round"/>
+  <path d="M458 239L470 250L455 259" fill="none" stroke="#67DAB9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="58" y="52" fill="#F1F8FB" font-family="Arial, sans-serif" font-size="20" font-weight="700">Extensión de cadera con polea</text>
+  <text x="58" y="76" fill="#A9C2D0" font-family="Arial, sans-serif" font-size="13">Polea baja · tobillera · cadera → extensión</text>
+  <g transform="translate(58 322)">
+    <rect width="524" height="5" rx="3" fill="#23455C"/>
+    <rect width="524" height="5" rx="3" fill="url(#teal)">
+      <animate attributeName="width" dur="5s" repeatCount="indefinite" values="0;524;524;0" keyTimes="0;.56;.64;1"/>
+    </rect>
+  </g>
+  <text x="582" y="76" fill="#70DDD7" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="end">5 s</text>
+</svg>
