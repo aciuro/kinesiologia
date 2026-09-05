@@ -1,6 +1,6 @@
 const s = {
-  white: '#ffffff', s200: '#e2e8f0', s400: '#94a3b8',
-  s500: '#64748b', s900: '#0f172a',
+  white: '#112433', s200: 'rgba(148,184,204,.18)', s400: '#8EA5B6',
+  s500: '#B5C5D0', s900: '#F2F7FB',
 }
 
 export default function Modal({ open, onClose, titulo, subtitulo, maxWidth = 520, footer, children }) {
@@ -20,7 +20,7 @@ export default function Modal({ open, onClose, titulo, subtitulo, maxWidth = 520
           width: '100%', maxWidth,
           background: s.white, borderRadius: 24,
           border: `1px solid ${s.s200}`,
-          boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.42)',
           maxHeight: '92vh', display: 'flex', flexDirection: 'column',
         }}
       >

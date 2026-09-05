@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { api } from './api.js'
 
 const c = {
-  bg: '#F0F8FA', white: '#FFFFFF', sky: '#5BB8CC', skyDark: '#3A96AE',
-  skyLight: '#DAEEF5', skyXlight: '#EEF7FA', aqua: '#7EC8B8', aquaDark: '#4FA898',
-  aquaLight: '#D8F0EA', ink: '#0D3540', ink2: '#2A6070', muted: '#7AAAB8',
-  border: '#C0DDE5',
-  redBg: '#FEF0EE', redBorder: '#F5A897', redText: '#C0341D', redSub: '#E05A3A',
+  bg: '#081521', white: '#112433', sky: '#38C5CB', skyDark: '#8BE9E8',
+  skyLight: 'rgba(56,197,203,.14)', skyXlight: '#0D1D2B', aqua: '#56D3B1', aquaDark: '#91E8D0',
+  aquaLight: 'rgba(86,211,177,.14)', ink: '#F2F7FB', ink2: '#C5D4DE', muted: '#829AAD',
+  border: 'rgba(148,184,204,.16)',
+  redBg: 'rgba(242,139,130,.12)', redBorder: 'rgba(242,139,130,.32)', redText: '#FFB0A8', redSub: '#F28B82',
 }
 
 const CAT = {

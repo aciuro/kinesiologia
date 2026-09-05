@@ -7,9 +7,9 @@ const EMPTY = { nombre: '', apellido: '', edad: '', email: '', celular: '', dni:
 
 const inputStyle = {
   width: '100%', marginTop: 4, padding: '11px 12px',
-  borderRadius: 12, border: '1px solid #e2e8f0',
-  fontSize: 14, color: '#0f172a', outline: 'none',
-  fontFamily: 'inherit', background: '#fff',
+  borderRadius: 12, border: '1px solid rgba(148,184,204,.20)',
+  fontSize: 14, color: '#F2F7FB', outline: 'none',
+  fontFamily: 'inherit', background: '#0B1B29',
   boxSizing: 'border-box',
 }
 
@@ -20,7 +20,7 @@ function Field({ label, required, children }) {
     : child
   return (
     <div>
-      <label style={{ fontSize: 14, color: '#475569' }}>
+      <label style={{ fontSize: 14, color: '#C5D4DE' }}>
         {label}{required && ' *'}
       </label>
       {cloned}
@@ -126,22 +126,22 @@ export default function Pacientes() {
       >
         {accesoCreado ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <div style={{ background: '#ecfdf5', color: '#047857', borderRadius: 12, padding: '12px 16px', fontWeight: 600, fontSize: 14 }}>
+            <div style={{ background: 'rgba(86,211,177,.14)', color: '#91E8D0', borderRadius: 12, padding: '12px 16px', fontWeight: 600, fontSize: 14 }}>
               ✅ Paciente creado con acceso al portal
             </div>
-            <p style={{ fontSize: 13, color: '#64748b' }}>
+            <p style={{ fontSize: 13, color: '#B7C8D7' }}>
               Compartí estos datos con el paciente para que pueda ver su ficha:
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {[['URL', '/kine'], ['Email', accesoCreado.email], ['Contraseña', accesoCreado.password]].map(([label, val]) => (
-                <div key={label} style={{ display: 'flex', justifyContent: 'space-between', background: '#f8fafc', borderRadius: 12, padding: '10px 14px', fontSize: 14 }}>
-                  <span style={{ color: '#64748b' }}>{label}</span>
-                  <strong style={{ color: '#0f172a' }}>{val}</strong>
+                <div key={label} style={{ display: 'flex', justifyContent: 'space-between', background: '#0B1B29', borderRadius: 12, padding: '10px 14px', fontSize: 14 }}>
+                  <span style={{ color: '#B7C8D7' }}>{label}</span>
+                  <strong style={{ color: '#F2F7FB' }}>{val}</strong>
                 </div>
               ))}
             </div>
             <button onClick={() => setModal(false)}
-              style={{ marginTop: 8, width: '100%', background: '#059669', color: '#fff', border: 'none', borderRadius: 14, padding: '13px', fontWeight: 700, fontSize: 15, cursor: 'pointer' }}>
+              style={{ marginTop: 8, width: '100%', background: 'linear-gradient(135deg,#1BAAB5,#16728C)', color: '#fff', border: 'none', borderRadius: 14, padding: '13px', fontWeight: 700, fontSize: 15, cursor: 'pointer' }}>
               Listo
             </button>
           </div>
@@ -183,7 +183,7 @@ export default function Pacientes() {
             </Field>
 
             {!editId && form.email && (
-              <div style={{ background: '#eff6ff', border: '1px solid #dbeafe', borderRadius: 12, padding: '10px 14px', fontSize: 13, color: '#1d4ed8' }}>
+              <div style={{ background: 'rgba(56,197,203,.12)', border: '1px solid rgba(56,197,203,.24)', borderRadius: 12, padding: '10px 14px', fontSize: 13, color: '#A0E9E7' }}>
                 Se creará acceso con email <strong>{form.email}</strong> y contraseña <strong>{form.dni || '123456'}</strong>
               </div>
             )}
@@ -191,11 +191,11 @@ export default function Pacientes() {
             {/* Botones */}
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10, marginTop: 8 }}>
               <button type="button" onClick={() => setModal(false)}
-                style={{ padding: '10px 18px', borderRadius: 12, border: '1px solid #e2e8f0', color: '#475569', background: 'none', cursor: 'pointer', fontSize: 14, fontFamily: 'inherit' }}>
+                style={{ padding: '10px 18px', borderRadius: 12, border: '1px solid rgba(148,184,204,.20)', color: '#C5D4DE', background: 'none', cursor: 'pointer', fontSize: 14, fontFamily: 'inherit' }}>
                 Cancelar
               </button>
               <button type="submit"
-                style={{ padding: '10px 22px', borderRadius: 12, background: '#059669', color: '#fff', border: 'none', fontWeight: 600, fontSize: 14, cursor: 'pointer', boxShadow: '0 1px 3px rgba(5,150,105,0.3)', fontFamily: 'inherit' }}>
+                style={{ padding: '10px 22px', borderRadius: 12, background: 'linear-gradient(135deg,#1BAAB5,#16728C)', color: '#fff', border: 'none', fontWeight: 600, fontSize: 14, cursor: 'pointer', boxShadow: '0 1px 3px rgba(4,116,139,.3)', fontFamily: 'inherit' }}>
                 {editId ? 'Guardar cambios' : 'Crear paciente'}
               </button>
             </div>

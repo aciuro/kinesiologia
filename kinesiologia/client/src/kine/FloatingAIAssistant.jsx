@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { api } from './api.js'
 
 const c = {
-  ink: '#082B34', ink2: '#315F68', muted: '#789FAA', border: 'rgba(83,151,166,.30)',
-  sky: '#2F9FB2', skyDark: '#176F82', white: '#FFFFFF', soft: '#F4FAFB', red: '#B91C1C'
+  ink: '#F2F7FB', ink2: '#C5D4DE', muted: '#91A9B9', border: 'rgba(148,184,204,.18)',
+  sky: '#38C5CB', skyDark: '#16728C', white: '#112433', soft: '#0B1B29', red: '#FFAEA7'
 }
 
 export default function FloatingAIAssistant() {
@@ -46,7 +46,7 @@ export default function FloatingAIAssistant() {
             display: 'grid', gridTemplateRows: 'auto 1fr auto', overflow: 'hidden'
           }}
         >
-          <div style={{ padding: 15, background: 'linear-gradient(135deg,#FFFFFF 0%,#E9F7FA 100%)', borderBottom: `1px solid ${c.border}`, display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'center' }}>
+            <div style={{ padding: 15, background: 'linear-gradient(135deg,#112433 0%,#102B3B 100%)', borderBottom: `1px solid ${c.border}`, display: 'flex', justifyContent: 'space-between', gap: 10, alignItems: 'center' }}>
             <div>
               <div style={{ fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 950, color: c.muted }}>Asistente IA</div>
               <div style={{ fontSize: 18, fontWeight: 950, color: c.ink, marginTop: 2 }}>Copiloto clínico</div>
@@ -69,7 +69,7 @@ export default function FloatingAIAssistant() {
                 {Array.isArray(m.actions) && m.actions.length > 0 && (
                   <div style={{ marginTop: 6, display: 'grid', gap: 5 }}>
                     {m.actions.slice(0, 5).map((a, idx) => (
-                      <div key={idx} style={{ background: '#fff', border: `1px solid ${c.border}`, borderRadius: 12, padding: '7px 9px', color: c.ink2, fontSize: 11 }}>
+                      <div key={idx} style={{ background: '#112433', border: `1px solid ${c.border}`, borderRadius: 12, padding: '7px 9px', color: c.ink2, fontSize: 11 }}>
                         <b>{a.type}</b>{a.nombre ? ` · ${a.nombre}` : ''}{a.query ? ` · ${a.query}` : ''}
                       </div>
                     ))}
@@ -80,7 +80,7 @@ export default function FloatingAIAssistant() {
             {loading && <div style={{ color: c.muted, fontSize: 12, fontWeight: 900 }}>Pensando...</div>}
           </div>
 
-          <div style={{ padding: 12, background: '#fff', borderTop: `1px solid ${c.border}` }}>
+          <div style={{ padding: 12, background: '#112433', borderTop: `1px solid ${c.border}` }}>
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
@@ -88,7 +88,7 @@ export default function FloatingAIAssistant() {
               placeholder="Ej: agregá hielo 15 min, armame una progresión de rodilla, bajá reps..."
               style={{
                 width: '100%', minHeight: 74, resize: 'none', border: `1px solid ${c.border}`, borderRadius: 18,
-                padding: 12, background: '#FFFFFF', color: c.ink, WebkitTextFillColor: c.ink, caretColor: c.skyDark,
+                padding: 12, background: '#0B1B29', color: c.ink, WebkitTextFillColor: c.ink, caretColor: c.skyDark,
                 fontFamily: 'inherit', fontSize: 14, outline: 'none', boxSizing: 'border-box'
               }}
             />

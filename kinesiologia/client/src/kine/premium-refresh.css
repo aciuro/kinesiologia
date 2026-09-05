@@ -280,3 +280,178 @@ section div[style*="width: 66px"][style*="height: 66px"] {
   h1 { font-size: 24px !important; }
   .pac-content { padding-top: 12px !important; }
 }
+
+/* Noche premium: experiencia coherente para el consultorio y el portal del paciente. */
+:root {
+  --kine-bg: #081521;
+  --kine-surface: #112433;
+  --kine-border: rgba(148,184,204,.16);
+  --kine-text: #F2F7FB;
+  --kine-text-2: #C5D4DE;
+  --kine-text-3: #829AAD;
+  --kine-accent: #38C5CB;
+  --kine-accent-bg: rgba(56,197,203,.13);
+  --kine-ok: #67DAB9;
+  --kine-ok-bg: rgba(103,218,185,.13);
+  --rp-bg: #081521;
+  --rp-bg-2: #0D1D2B;
+  --rp-surface: #112433;
+  --rp-surface-solid: #112433;
+  --rp-ink: #F2F7FB;
+  --rp-ink-soft: #C5D4DE;
+  --rp-muted: #829AAD;
+  --rp-line: rgba(148,184,204,.16);
+  --rp-line-strong: rgba(76,222,220,.52);
+  --rp-brand: #38C5CB;
+  --rp-brand-dark: #8BE9E8;
+  --rp-brand-soft: rgba(56,197,203,.13);
+  --rp-mint: #67DAB9;
+  --rp-mint-soft: rgba(103,218,185,.13);
+  --rp-card-shadow: 0 22px 58px rgba(0,0,0,.25);
+  --rp-card-shadow-sm: 0 12px 34px rgba(0,0,0,.20);
+}
+
+html, body, #root {
+  background: radial-gradient(circle at 70% -12%, rgba(36,150,171,.19), transparent 34%), #081521 !important;
+}
+
+.kine-app,
+.adm-shell,
+.pac-shell {
+  background: radial-gradient(circle at 70% -12%, rgba(36,150,171,.16), transparent 34%), radial-gradient(circle at 5% 100%, rgba(20,72,96,.18), transparent 32%), #081521 !important;
+  color: var(--rp-ink) !important;
+}
+
+.adm-topbar,
+.adm-secondary-nav { color: var(--rp-ink) !important; }
+
+.adm-bottom-nav {
+  background: rgba(17,36,51,.93) !important;
+  border-color: var(--rp-line) !important;
+  box-shadow: 0 18px 48px rgba(0,0,0,.34) !important;
+}
+
+.kine-page-title,
+.kine-page-header h1,
+.adm-content h1,
+.adm-content h2,
+.adm-content h3,
+.adm-content header h1,
+.pac-content h1,
+.pac-content h2,
+.pac-content h3 { color: var(--rp-ink) !important; }
+
+.kine-page,
+.kine-content,
+.adm-content,
+.pac-content { color: var(--rp-ink) !important; }
+
+.paciente-card,
+.kine-lesiones-sidebar,
+.kine-sesiones-panel,
+.kine-ejercicios-panel,
+.agenda-cal,
+.agenda-panel,
+.kine-modal,
+.kine-empty,
+.kine-empty-sm,
+.kine-sesion-card,
+.kine-ej-card {
+  background: linear-gradient(145deg, rgba(18,39,55,.98), rgba(12,29,43,.98)) !important;
+  border-color: var(--rp-line) !important;
+  box-shadow: var(--rp-card-shadow-sm) !important;
+  color: var(--rp-ink) !important;
+}
+
+.paciente-card:hover,
+.kine-sesion-card:hover,
+.kine-ej-card:hover { border-color: rgba(56,197,203,.5) !important; }
+
+.paciente-card-nombre,
+.kine-detalle-nombre,
+.kine-lesion-desc,
+.kine-panel-titulo,
+.kine-sesion-fecha,
+.kine-ej-nombre,
+.agenda-turno-pac,
+.agenda-panel-titulo,
+.cal-mes-titulo { color: var(--rp-ink) !important; }
+
+.paciente-card-os,
+.kine-detalle-meta,
+.kine-lesion-meta,
+.kine-panel-notas,
+.kine-sesion-notas,
+.kine-ej-desc,
+.agenda-turno-motivo,
+.agenda-turno-dur,
+.cal-dia-nombre,
+.kine-empty,
+.kine-empty-sm { color: var(--rp-muted) !important; }
+
+.kine-search,
+.kine-select,
+.kine-form input,
+.kine-form textarea,
+.kine-form select,
+.kine-modal input,
+.kine-modal textarea,
+.kine-modal select,
+.adm-shell input,
+.adm-shell textarea,
+.adm-shell select {
+  background: #0B1B29 !important;
+  border-color: rgba(148,184,204,.20) !important;
+  color: var(--rp-ink) !important;
+}
+
+.kine-form label,
+.kine-modal label,
+.adm-content label { color: var(--rp-ink-soft) !important; }
+
+.kine-btn-secondary,
+.kine-btn-icon,
+.kine-btn-sm,
+.cal-nav-btn,
+.agenda-btns button {
+  background: rgba(255,255,255,.045) !important;
+  border-color: var(--rp-line) !important;
+  color: var(--rp-ink-soft) !important;
+}
+
+.kine-btn-primary,
+.rp-premium-button {
+  background: linear-gradient(135deg, #1BAAB5 0%, #16728C 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 14px 32px rgba(4,116,139,.28) !important;
+}
+
+.kine-tabs,
+.kine-sidebar-header,
+.kine-lesion-item,
+.agenda-turno,
+.cal-celda { border-color: var(--rp-line) !important; }
+.kine-lesion-item:hover,
+.cal-celda.activa:hover { background: rgba(255,255,255,.035) !important; }
+.kine-lesion-item.active,
+.kine-tab.active { background: rgba(56,197,203,.12) !important; }
+
+.kine-estado.activa { background: rgba(243,201,112,.14) !important; color: #F7D88C !important; }
+.kine-estado.alta { background: rgba(103,218,185,.13) !important; color: #8BE4C9 !important; }
+.kine-estado.suspendida { background: rgba(148,184,204,.12) !important; color: #BBCBD6 !important; }
+
+.pac-content .pp-card,
+.pac-content .pp-mini-card,
+.pac-content [class*="card"] {
+  background: linear-gradient(145deg, rgba(18,39,55,.98), rgba(12,29,43,.98)) !important;
+  border-color: var(--rp-line) !important;
+  color: var(--rp-ink) !important;
+}
+
+.pac-content p,
+.pac-content span,
+.pac-content div { border-color: var(--rp-line); }
+
+@media (min-width: 768px) {
+  .adm-content::before { margin-top: -4px; background: linear-gradient(90deg, transparent, rgba(56,197,203,.48), transparent); }
+}
